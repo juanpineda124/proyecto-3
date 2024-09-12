@@ -79,20 +79,21 @@ const getMedias = async (req = request, res = response) => {
 
 // actualizar proyecto
 const updateMediaByID = async (req = request, res = response) => {
-    try{
-        console.log(req.body)
-        console.log(req.params)
-        const datos = req.body
-        const id = req.params.id
-        datos.fechaModificacion = new Date()
-        console.log(datos)
-        const media = await Media.findByIdAndUpdate(id, datos, {new: true})
-        return res.json(media)
-    }catch(error){
-        console.log(error)
-        return res.status(500).json({msj: error})
+    try {
+        console.log( req.body);
+        console.log(req.params);
+        const datos = req.body;
+        const id = req.params.id;
+        datos.fechaModificacion = new Date();
+        console.log(datos);
+        const media = await Media.findByIdAndUpdate(id, datos, { new: true });
+        return res.json(media);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ msg: error.message || error });
     }
 }
+
 //eliminar
 const deleteMediaByID = async (req = request, res = response) => {
     try{
